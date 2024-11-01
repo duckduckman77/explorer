@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Itinerary | World Explorer</title>
+
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="itinerary.css">
+    <link rel="stylesheet" href="animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-globe-americas"></i>
+                <h1>World Explorer</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="itinerary.html" class="nav-link active">
+                    <i class="fas fa-map-marked-alt"></i> Itinerary
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header Title -->
+        <div class="page-header">
+            <h1><i class="fas fa-map-marked-alt"></i> World Explorer</h1>
+        </div>
+        <!-- Container for Itinerary List -->
+        <div class="container">
+            <div id="itinerary-list" class="itinerary-grid"></div>
+        </div>
+
+        <!-- Edit Itinerary Modal -->
+        <div id="edit-modal" class="modal">
+            <center>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2><i class="fas fa-edit"></i> Edit Travel Details</h2>
+                        <button class="close-btn" onclick="closeEditModal()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="country-header">
+                            <span id="edit-country-name" class="country-name"></span>
+                        </div>
+    
+                        <!-- Input fields for itinerary details -->
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-map-marker-alt"></i> Location
+                            </label>
+                            <input type="text" id="edit-location" placeholder="Enter city or specific location">
+                        </div>
+    
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-hiking"></i> Activities
+                            </label>
+                            <input type="text" id="edit-activities" placeholder="What do you plan to do?">
+                        </div>
+    
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-sticky-note"></i> Description
+                            </label>
+                            <textarea id="edit-description" rows="4" placeholder="Add your travel description..."></textarea>
+                        </div>
+    
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-calendar"></i> Date
+                            </label>
+                            <input type="date" id="edit-date">
+                        </div>
+                    </div>
+    
+                    <!-- Modal buttons to save or cancel changes -->
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="closeEditModal()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button class="btn btn-primary" onclick="saveEditedItinerary()">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+            </center>
+        </div>
+    </main>
+
+    <!-- Footer  -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 World Explorer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- import javascript file -->
+    <script src="itinerary.js"></script>
+</body>
+</html>

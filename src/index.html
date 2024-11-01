@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-globe-americas"></i>
+                <h1>World Explorer</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="itinerary.html" class="nav-link">
+                    <i class="fas fa-map-marked-alt"></i> Itinerary
+                </a>
+            </div>
+        </nav>
+
+        <!-- Search Box for Country Lookup -->
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search" placeholder="Search for a country..." oninput="searchCountry()">
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="content-wrapper">
+            <div class="left-panel">
+                <!-- Container for Country List and Selected Country Information -->
+                <div id="country-list" class="country-list"></div>
+                <div id="country-info" class="country-info">
+                    <div class="info-grid">
+                        <!-- Flag and Coat of Arms Section -->
+                        <div class="flag-section">
+                            <div class="flag-container">
+                                <h2 id="country-name" class="country-title"></h2>
+                                <img id="country-flag" alt="Flag" class="country-flag"/>
+                            </div>
+                            <div class="coat-of-arms-container">
+                                <h2>Coat of Arms</h2>
+                                <img id="country-coat-of-arms" src="" alt="Coat of Arms" class="coat-of-arms">
+                                <span id="coat-of-arms-text" class="no-coat-text">NONE</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Country Details Section -->
+                        <div class="details-section">
+                            <div class="info-card">
+                                <p><i class="fas fa-city"></i> <strong>Capital:</strong> <span id="country-capital"></span></p>
+                                <p><i class="fas fa-language"></i> <strong>Language:</strong> <span id="country-language"></span></p>
+                                <p><i class="fas fa-users"></i> <strong>Population:</strong> <span id="country-population"></span></p>
+                                <p><i class="fas fa-map"></i> <strong>Area:</strong> <span id="country-area"></span> km²</p>
+                                <p><i class="fas fa-globe"></i> <strong>Region:</strong> <span id="country-region"></span></p>
+                                <p><i class="fas fa-map-marker-alt"></i> <strong>Subregion:</strong> <span id="country-subregion"></span></p>
+                                <p><i class="fas fa-clock"></i> <strong>Time Zone:</strong> <span id="country-timezone"></span></p>
+                                <p><i class="fas fa-map-marked-alt"></i> <strong>Google Maps: </strong><a id="country-maps" href="#" target="_blank">View on Maps</a></p>
+                            </div>
+                        </div>
+
+                        <!-- Nearby Countries List -->
+                        <div class="nearby-section">
+                            <div class="nearby-card">
+                                <h3><i class="fas fa-compass"></i> Nearby Countries</h3>
+                                <ul id="nearby-countries" class="nearby-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Button to Add Selected Country to Itinerary -->
+                    <button id="add-to-itinerary-btn" class="action-button">
+                        <i class="fas fa-plus"></i> Add to Itinerary
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sidebar Panel for Itinerary Management -->
+            <div class="right-panel">
+                <div id="itinerary" class="itinerary-sidebar">
+                    <div class="sidebar-header">
+                        <h2><i class="fas fa-list-alt"></i> Travel Itinerary</h2>
+                        <span class="itinerary-count" id="itinerary-count">0 destinations</span>
+                    </div>
+                    <div class="itinerary-scroll-container">
+                        <ul id="itinerary-list" class="itinerary-items"></ul>
+                    </div>
+                    <div class="sidebar-footer">
+                        <button onclick="clearItinerary()" class="clear-btn">
+                            <i class="fas fa-trash-alt"></i> Clear Itinerary
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Adding Itinerary Details -->
+        <div id="add-details-modal" class="modal">
+            <center>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Add Details for <span id="modal-country-name"></span></h3>
+                        <button class="close-btn" onclick="closeModal()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <!-- Form Fields for Adding Specific Itinerary Details -->
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> Location</label>
+                            <input type="text" id="location" placeholder="Enter specific location">
+                        </div>
+    
+                        <div class="form-group">
+                            <label><i class="fas fa-hiking"></i> Activities</label>
+                            <input type="text" id="activities" placeholder="Enter planned activities">
+                        </div>
+    
+                        <div class="form-group">
+                            <label><i class="fas fa-sticky-note"></i> Description</label>
+                            <textarea id="description" rows="4" placeholder="Add travel notes..."></textarea>
+                        </div>
+    
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Date</label>
+                            <input type="date" id="date">
+                        </div>
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+                        <button class="btn-primary" onclick="saveItineraryDetails()">Save</button>
+                    </div>
+                </div> 
+            </center>
+        </div>
+    </main>
+
+    <!-- import javacript file -->
+    <script src="app.js"></script>
+</body>
+</html>
